@@ -1,0 +1,44 @@
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+header {
+    display: flex;
+    height: 78px;
+    background-color: rgb(173, 217, 237);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+}
+
+.logo img {
+    height: 80px;
+    margin-right: 10px;
+}
+
+nav a {
+    font-weight: 600;
+    padding-right: 20px;
+}
+
+nav a:hover {
+    color: rgb(255, 255, 255);
+}
+@media (max-width:700px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        padding: 10px 0px;
+    }
+}
