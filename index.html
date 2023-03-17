@@ -12,6 +12,11 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>WEBRI</title>
 
 </head>
@@ -22,26 +27,46 @@
         <div class="items">
 
             <div class="contact">
-                <h2> WEBRI</h2>
+
             </div>
 
             <div class="submit-form">
-                <label for="exampleInputEmail1" class="form-label">Correo</label>
-                <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Nosotros no compartiremos su correo con otros</div>
+                <div class="box shadow bg-whit p-4">
+                    <h2 class="mb-4 text-center fs-1">Login</h2>
+                    <form action="mb-3">
+                        <div class="form-floating mb-3">
 
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="Password">
+                            <div class="inputBox">
+                                <span class="icon"> <i class="fa-solid fa-envelope"></i></span>
+                                <input type="email" class="form-control rounder-o">
+                                <label for="">Correo</label>
+                            </div>
+                            <div>
+                                <span class="icon"> <i class="fa-solid fa-lock"></i></span>
+                                <input type="password" class="form-control rounder-o">
+                                <label for="">Contraseña<area shape="" coords="" href="" alt=""></label>
+                            </div>
 
-                <br><br>
+                            <div class="cajaBotones d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn btn-primary" id="ingresar">Iniciar sesión</button>
+                            </div> 
+                               <br><br>
+                                <!-- En un apartado de  la pagina lejos del inicia sesion -->
+                            <p><a href="registrate.html">Registrate</a></p>
+                              
+                            <hr>
 
-                <div class="cajaBotones">
-                    <button type="submit" class="btn btn-primary" id="ingresar">Iniciar sesión</button>
-<br><br>
-                    <!-- En un apartado de  la pagina lejos del inicia sesion -->
-                    <a class="btn btn-light" href="registrate.html">Registrate</a>
+                            <h6>Inicia sesión con:</h6>
+                            <li><i class="fa-brands fa-facebook"></i></li>
+                            <li><i class="fa-brands fa-google"></i></li>
+                            <li><i class="fa-brands fa-twitter"></i></li>
+                            <!-- facebook /Twitter/Google -->
+                        </div>
+
+                    </form>
+
+
                 </div>
-
             </div>
         </div>
 
