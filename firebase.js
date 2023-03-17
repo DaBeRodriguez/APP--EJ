@@ -125,6 +125,5 @@ $(document).ready(function () {
   });
   
   
-  // $("#Chek").click(function () {
-  //   $("#Password1").type="text"
-  // })
+  
+  
