@@ -24,25 +24,32 @@
     <main>
         <div class="formularioReg text-center">
             <h2>WEBRI</h2>
-            
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Ingresa un nombre</label>
+                <input type="text" class="form-control" id="Nombre">
+            </div>
+
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Ingresa tu Correo</label>
                 <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Nosotros no compartiremos su correo con otros</div>
+
             </div>
+
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Ingresa una Contraseña</label>
                 <input type="password" class="form-control" id="Password1">
             </div>
+
+
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="Check">
                 <label class="form-check-label" for="exampleCheck1">Mostrar contraseña</label>
             </div>
 
-            <!-- href="index.html" -->
-            <a class="boton btn-slide" id="registrate">Finalizar</a>
+            <!-- href="index.html"  HAcerle un alert donde diga listo y redirrecione al inicio -->
+            <button class="btn btn-secondary" id="registrate"> Finalizar</button>
 
-            <button class="btn btn-success" id="google">Inicia con Google</button>
         </div>
     </main>
     <footer>
@@ -63,6 +70,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <!-- link2 firebase     -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>
