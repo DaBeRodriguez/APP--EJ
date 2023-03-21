@@ -33,7 +33,7 @@
             <div class="submit-form">
                 <div class="box shadow bg-whit p-4">
                     <h2 class="mb-4 text-center fs-1">Login</h2>
-                    <form action="mb-3">
+                    <form >
                         <div class="form-floating mb-3">
 
                             <div class="inputBox">
@@ -44,19 +44,21 @@
                             <div>
                                 <span class="icon"> <i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control rounder-o" id="Password1">
-                                <label for="">Contraseña<area shape="" coords="" href="" alt=""></label>
+                                <label for="">Contraseña</label>
                             </div>
 
                             <div class="cajaBotones d-grid gap-2 col-6 mx-auto">
                                 <button type="button" class="btn btn-primary" id="ingresar">Iniciar sesión</button>
-                            </div> 
-                               <br><br>
-                                <!-- En un apartado de  la pagina lejos del inicia sesion -->
+                            </div>
+                            <br><br>
+                            <!-- En un apartado de  la pagina lejos del inicia sesion -->
                             <p><a href="registrate.html">Registrate</a></p>
-                              
+
                             <hr>
 
                             <h6>Inicia sesión con:</h6>
+                            <button type="submit" id="google">Inicia con Google </button>
+
                             <i class="fa-brands fa-facebook"></i>
                             <i class="fa-brands fa-google"></i>
                             <i class="fa-brands fa-twitter"></i>
@@ -78,14 +80,18 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 
-    <script src="firebase.js"></script>
-
-    <!-- link1 firebase     -->
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    
+    <!-- links firebase     -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <!-- link2 firebase     -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="firebase.js"></script>
 </body>
 
 </html>

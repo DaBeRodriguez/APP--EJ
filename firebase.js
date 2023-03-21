@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function (){
   const firebaseConfig = {
     apiKey: "AIzaSyD9slsvBByMNRuMhd3NyrH64fs6BiYJBWA",
     authDomain: "login-2e085.firebaseapp.com",
@@ -8,32 +8,35 @@ $(document).ready(function () {
     appId: "1:459262184948:web:b7eefd5044a5ad50fb3da1",
     measurementId: "G-MJSWVQCS7R"
   };
-
+  
   // No olvidar poner el => Firebase. (antes de "initializeApp")
 const app = firebase.initializeApp(firebaseConfig);
   console.log(app);
-const db =  firebase.firestore();
 
+// Initialize Cloud Firestore and get a reference to the service
+const auth = firebase.auth();
 
-})
+const db = firebase.firestore();
 
-// Registrar usuarios
+var provider = new firebase.auth.GoogleAuthProvider();
+
+                                              // REGISTRAR USUARIOS NUEVOS
+
+// X CORREO Y CONTRASEÑA
 $("#registrate").click(function () {
-  // capturar email y contraseña
 
   let nombre = $("#Nombre").val();
+  let email = $("#Email").val();
+  let password = $("#Password").val();
 
-  let email = $("#Email1").val();
-  let password = $("#Password1").val();
+  firebase
+  .auth()
+  .createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+     // Signed in
+    var user = userCredential.user;
 
-  console.log(email, password);
-
-  // MEtodo FIREBASE Registrar usuarios nuevos
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-
+    // alerta de confirmacion:
       Swal.fire(
         'Listo!',
         'Su cuenta a sido creada con éxito',
@@ -49,13 +52,39 @@ $("#registrate").click(function () {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: errorMessage,
+        text: errorMessage, errorMessage
       })
     });
-})
+});
 
-// Ingresar con cuenta registrada
+// X CUENTA DE GOOGLE
+$("#google").click(function (e) {
+e.preventDefault
 
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase
+  .auth()
+  .signInWithPopup(provider)
+  .then((result) => { 
+    window.location.href = "home.html";
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+
+    alert(errorCode,errorMessage,email,credential);
+  });
+});
+
+                                              // INGRESAR CON CUENTA 
+
+//X CUENTA REGISTRADA
 $("#ingresar").click(function () {
   let email = $("#Email1").val();
   let password = $("#Password1").val();
@@ -76,13 +105,13 @@ $("#ingresar").click(function () {
     });
 })
 
-// Cerrar sesion 
+// CERRAR SESION
 $("#salir").click(function () {
 
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
-    window.location.href = "index.html";
-
+    alert("CERRARAS SESION ");
+    // window.location.href = "index.html";
 
   }).catch((error) => {
     // An error happened.
@@ -90,60 +119,19 @@ $("#salir").click(function () {
 
 })
 
-// Registrarse con Google
-$("#google").click(function () {
-
-  var provider = new firebase.auth.GoogleAuthProvider();
-
-  firebase.auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
-      var credential = result.credential;
-
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // IdP data available in result.additionalUserInfo.profile.
-      // ...
-      window.location.href = "pagina.html";
-
-    }).catch((error) => {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
-});
-
-$("#salir").click(function () {
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
-});
-
 
 // Actualiza el perfil de un usuario
 
 function addNombre(nombre) {
-
-
   const user = firebase.auth().currentUser;
 
   user.updateProfile({
-    displayName: "Jane Q. User",
+    displayName: nombre,
     // photoURL: "https://example.com/jane-q-user/profile.jpg"
 
   }).then(() => {
     // Update successful
-
+alert("El nombre ya se cambio")
     // ...
   }).catch((error) => {
     // An error occurred
@@ -163,7 +151,8 @@ firebase.auth().onAuthStateChanged((user) => {
     var email = user.email;
     var usuario = user.displayName;
 
-    console.log(uid,email.usuario);
+    console.log(uid,email,usuario);
+      obtenerDatos()
     // ...
   } else {
     // User is signed out
@@ -171,24 +160,77 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
-// CREAR PUBLICAIONES
+function obtenerDatos() {
+  db.collection("posteos").get().then((querySnapshot) => {
+    mostrarDatos(querySnapshot.docs);
+  });
+  
+}
+
+// CREAR PUBLICACIONES
 $("#publicar").click(function (e) {
  e.preventDefault();
 let post = $("#texto");val();
 
 const user = firebase.auth().currentUser;
-db.collection("posteos").add({
- _publicacion:post,
-_idUser:user.iud,
- _nombreUser:user.displayName, 
+     db.collection("Posteos").add({
+      _publicacion:post,
+      _idUser:user.iud,
+      _nombreUser:user.displayName, 
 })
 .then((docRef) => {
   console.log("Document written with ID: ", docRef.id);
+  console.log(post);
+
 })
 .catch((error) => {
   console.error("Error adding document: ", error);
 });
-})
+});
+
+
+//MOSTRAR PUBLICACION EN HTML
+  function mostrarDatos(data) {
+    const user = firebase.auth().currentUser;
+    if (data.length > 0) {
+      $("#post").empty();
+      let html = "";
+      data.forEach((doc) => {
+        var post = doc.data();
+        console.log("post - ",post);
+        var div = ``;
+        if (user.uid == post._idUser) {
+          div = `
+          <div class="card mt-3 mx-auto" style="max-width: 800px;">
+            <div class="card-body">
+              <p>${post._publicacion}</p>
+              <p>Publicado por ${post._nombreUser}</p>
+              <button data-id="${doc._idUser}">
+                Editar
+              </button>
+              <button data-id="${doc._idUser}">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        `;
+        } else {
+          div = `
+          <div class="card bg-dark text-white  mt-3 mx-auto" style="max-width: 800px;">
+            <div class="card-body">
+              <p>${post._publicacion}</p>
+              <p>Publicado por ${post._nombreUser}</p>
+            </div>
+          </div>
+        `;
+        }
+
+        html += div;
+      });
+      $("#post").append(html);
+
+    }
+  }
 
 
 
@@ -218,7 +260,7 @@ _idUser:user.iud,
 
 
 
-
+});
 
 
 
